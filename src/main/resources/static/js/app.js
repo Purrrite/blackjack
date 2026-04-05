@@ -17,7 +17,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     await engine.loadData(params);
     
     engine.onComplete = () => {
-        window.location.href = `/simulate?count=${params.count}&initialMoney=${params.initialMoney}&betAmount=${params.betAmount}`;
+        const results = engine.getFinalResults();
+        const queryParams = new URLSearchParams({
+            ...params,
+            finalMoney: results.finalMoney,
+            pWins: results.stats.pWins,
+            pBJ: results.stats.pBJ,
+            dWins: results.stats.dWins,
+            dBJ: results.stats.dBJ,
+            ties: results.stats.ties
+        }).toString();
+        
+        window.location.href = `/simulate?${queryParams}`;
     };
 
     // 속도 초기화
