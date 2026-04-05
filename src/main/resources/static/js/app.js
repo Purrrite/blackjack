@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = `/simulate?${queryParams}`;
     };
 
-    // 속도 초기화
-    engine.setSpeed(410);
+    // 속도 초기화 (10 TPS)
+    engine.setSpeed(10);
     engine.start();
 
     // 전역 이벤트 바인딩

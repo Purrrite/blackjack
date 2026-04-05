@@ -19,6 +19,8 @@ export class UIRenderer {
             },
             speedValue: document.getElementById('speed-value')
         };
+        this.actionSound = new Audio('/action.wav');
+        this.actionSound.volume = 0.5; // 음량 50% 설정
     }
 
     render(step, gameNum, totalGames) {
@@ -30,6 +32,31 @@ export class UIRenderer {
 
         this.renderHand(this.dom.dealerCards, step.dealerHand);
         this.renderHand(this.dom.playerCards, step.playerHand);
+
+        // 행동이 일어날 때 사운드 재생
+        if (step.action && step.action !== 'WAITING' && step.action !== 'GAME_OVER') {
+            this.playActionSound();
+        }
+    }
+
+    playActionSound() {
+        if (this.actionSound) {
+            // 무작위 Pitch 설정 (0.8 - 1.2배)
+            const randomPitch = Math.random() * (1.2 - 0.8) + 0.8;
+            this.actionSound.playbackRate = randomPitch;
+
+            // 브라우저에 따라 pitch 변경을 허용하도록 설정 (기본값은 false인 경우가 많음)
+            if ('preservesPitch' in this.actionSound) {
+                this.actionSound.preservesPitch = false;
+            } else if ('mozPreservesPitch' in this.actionSound) {
+                this.actionSound.mozPreservesPitch = false;
+            } else if ('webkitPreservesPitch' in this.actionSound) {
+                this.actionSound.webkitPreservesPitch = false;
+            }
+
+            this.actionSound.currentTime = 0;
+            this.actionSound.play().catch(e => console.log('Audio play failed:', e));
+        }
     }
 
     renderHand(container, hand) {
@@ -38,15 +65,15 @@ export class UIRenderer {
         hand.forEach(card => {
             const cardEl = document.createElement('div');
             cardEl.className = 'card-view';
-            
+
             const rankIdx = CONFIG.CARD.RANKS.indexOf(card.rank);
             const suitIdx = CONFIG.CARD.SUITS.indexOf(card.suit);
-            
+
             // X 좌표: 배열에서 직접 추출
             const posX = CONFIG.CARD.X_COORDS[rankIdx];
             // Y 좌표: Bottom-Left 기준이므로 Top-Left로 변환 (Y - 카드높이)
             const posY = CONFIG.CARD.Y_COORDS[suitIdx] - CONFIG.CARD.HEIGHT;
-            
+
             // background-position은 음수 값을 사용하여 이미지를 이동시킴
             cardEl.style.backgroundPosition = `-${posX}px -${posY}px`;
             container.appendChild(cardEl);
@@ -62,6 +89,6 @@ export class UIRenderer {
     }
 
     updateSpeedDisplay(value) {
-        if (this.dom.speedValue) this.dom.speedValue.innerText = `${value}%`;
+        if (this.dom.speedValue) this.dom.speedValue.innerText = `${value} TPS`;
     }
 }

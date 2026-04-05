@@ -1,0 +1,49 @@
+{
+  "index": {
+    "title": "블랙잭 시뮬레이터 - 설정",
+    "header": "블랙잭 시뮬레이션",
+    "label_count": "시뮬레이션 횟수 :",
+    "label_initial_money": "초기 자본 :",
+    "label_bet_amount": "베팅 금액 :",
+    "btn_quick": "빠른 결과 보기",
+    "btn_visual": "시각 진행 모드"
+  },
+  "result": {
+    "title": "블랙잭 시뮬레이션 결과",
+    "header": "블랙잭 시뮬레이션 결과",
+    "sim_count_label": "시뮬레이션 횟수:",
+    "games_unit": "판",
+    "label_initial_capital": "초기 돈",
+    "label_final_capital": "최종 돈",
+    "label_profit_loss": "손익",
+    "label_roi": "수익률 (ROI)",
+    "table_header_result": "게임 결과",
+    "table_header_count": "횟수",
+    "btn_back": "← 새 시뮬레이션 실행"
+  },
+  "visual": {
+    "title": "블랙잭 시뮬레이션 - 틱 모드",
+    "label_dealer": "딜러",
+    "label_player": "플레이어",
+    "label_score": "점수:",
+    "header_simulation": "시뮬레이션",
+    "label_capital": "돈: $",
+    "label_progress": "진행 상황:",
+    "label_action": "행동:",
+    "status_waiting": "대기 중",
+    "stat_p_wins": "플레이어 승리:",
+    "stat_p_bj": "플레이어 블랙잭:",
+    "stat_d_wins": "딜러 승리:",
+    "stat_d_bj": "딜러 블랙잭:",
+    "stat_ties": "무승부:",
+    "label_speed": "속도:",
+    "btn_skip": "스킵"
+  },
+  "enums": {
+    "PLAYER_WIN": "플레이어 승리",
+    "PLAYER_BLACKJACK": "플레이어 블랙잭",
+    "DEALER_WIN": "딜러 승리",
+    "DEALER_BLACKJACK": "딜러 블랙잭",
+    "PUSH": "무승부"
+  }
+}

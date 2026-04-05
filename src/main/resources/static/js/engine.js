@@ -39,7 +39,7 @@ export class SimulationEngine {
         const step = game.steps[this.state.currentStepIdx];
 
         this.ui.render(step, this.state.currentGameIdx + 1, this.state.gamesData.length);
-        
+
         if (step.action === "GAME_OVER") {
             this.updateStats(step.result);
         }
@@ -49,10 +49,10 @@ export class SimulationEngine {
     }
 
     updateStats(result) {
-        const keyMap = { 
-            'PLAYER_WIN': 'pWins', 
-            'PLAYER_BLACKJACK': 'pBJ', 
-            'DEALER_WIN': 'dWins', 
+        const keyMap = {
+            'PLAYER_WIN': 'pWins',
+            'PLAYER_BLACKJACK': 'pBJ',
+            'DEALER_WIN': 'dWins',
             'DEALER_BLACKJACK': 'dBJ',
             'PUSH': 'ties'
         };
@@ -70,9 +70,9 @@ export class SimulationEngine {
         }
     }
 
-    setSpeed(value) {
-        this.state.tickDelay = 510 - value;
-        this.ui.updateSpeedDisplay(value);
+    setSpeed(tps) {
+        this.state.tickDelay = 1000 / tps;
+        this.ui.updateSpeedDisplay(tps);
     }
 
     skip() {
@@ -82,10 +82,10 @@ export class SimulationEngine {
 
     getFinalResults() {
         const finalStats = { pWins: 0, pBJ: 0, dWins: 0, dBJ: 0, ties: 0 };
-        const keyMap = { 
-            'PLAYER_WIN': 'pWins', 
-            'PLAYER_BLACKJACK': 'pBJ', 
-            'DEALER_WIN': 'dWins', 
+        const keyMap = {
+            'PLAYER_WIN': 'pWins',
+            'PLAYER_BLACKJACK': 'pBJ',
+            'DEALER_WIN': 'dWins',
             'DEALER_BLACKJACK': 'dBJ',
             'PUSH': 'ties'
         };
@@ -100,7 +100,7 @@ export class SimulationEngine {
 
         const lastGame = this.state.gamesData[this.state.gamesData.length - 1];
         const lastStep = lastGame.steps[lastGame.steps.length - 1];
-        
+
         return {
             stats: finalStats,
             finalMoney: lastStep.currentMoney

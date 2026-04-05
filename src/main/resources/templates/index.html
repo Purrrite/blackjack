@@ -1,85 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${currentLang}">
 <head>
     <meta charset="UTF-8">
     <title th:text="${msg.index.title}">Blackjack Simulator - Setup</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-        }
-
-        .btn-quick {
-            background-color: #3498db;
-        }
-
-        .btn-visual {
-            background-color: #27ae60;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-    </style>
 </head>
-
 <body>
+    <div style="text-align: right;">
+        <a href="?lang=en" th:style="${currentLang == 'en' ? 'font-weight: bold;' : ''}">English</a> |
+        <a href="?lang=kr" th:style="${currentLang == 'kr' ? 'font-weight: bold;' : ''}">한국어</a>
+    </div>
+
     <h1 th:text="${msg.index.header}">Blackjack Simulation</h1>
     <form id="simForm">
-        <div class="form-group">
-            <label for="count" th:text="${msg.index.label_count}">Simulation Count :</label>
+        <div>
+            <label for="count" th:text="${msg.index.label_count}">Simulation Count (횟수):</label>
             <input type="number" id="count" name="count" value="100000" required>
         </div>
-        <div class="form-group">
-            <label for="initialMoney" th:text="${msg.index.label_initial_money}">Initial Capital :</label>
+        <div>
+            <label for="initialMoney" th:text="${msg.index.label_initial_money}">Initial Capital (초기 자본):</label>
             <input type="number" id="initialMoney" name="initialMoney" value="1000000" required>
         </div>
-        <div class="form-group">
-            <label for="betAmount" th:text="${msg.index.label_bet_amount}">Bet Amount :</label>
+        <div>
+            <label for="betAmount" th:text="${msg.index.label_bet_amount}">Bet Amount (베팅 금액):</label>
             <input type="number" id="betAmount" name="betAmount" value="100" required>
         </div>
 
-        <div class="btn-container">
-            <button type="button" class="btn-quick" onclick="runSimulation('/simulate')"
-                th:text="${msg.index.btn_quick}">Quick Stats</button>
-            <button type="button" class="btn-visual" onclick="runSimulation('/visual')"
-                th:text="${msg.index.btn_visual}">Visual Tick Mode</button>
+        <div>
+            <button type="button" onclick="runSimulation('/simulate')" th:text="${msg.index.btn_quick}">Quick Stats</button>
+            <button type="button" onclick="runSimulation('/visual')" th:text="${msg.index.btn_visual}">Visual Tick Mode</button>
         </div>
     </form>
 
@@ -91,5 +39,4 @@
         }
     </script>
 </body>
-
 </html>
