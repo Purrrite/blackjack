@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack Simulation - Tick Mode</title>
+    <link rel="stylesheet" th:href="@{/css/blackjack.css}">
+    <style>
+        .dashboard {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 250px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #2ecc71;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #27ae60;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .dashboard h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 1px solid #27ae60;
+            padding-bottom: 10px;
+        }
+
+        .stat-line {
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            color: white;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #27ae60;
+        }
+
+        .btn-skip {
+            width: 100%;
+            padding: 10px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn-skip:hover {
+            background: #c0392b;
+        }
+
+        input[type=range] {
+            width: 100%;
+        }
+
+        /* 테이블 레이아웃 최적화 */
+        .visual-table {
+            max-width: 800px;
+            margin: 50px auto;
+            min-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="visual-table table-area">
+        <div class="hand-area">
+            <div class="hand-label">DEALER (Score: <span id="dealer-score">0</span>)</div>
+            <div id="dealer-cards" class="card-container"></div>
+        </div>
+
+        <div style="height: 100px;"></div>
+
+        <div class="hand-area">
+            <div class="hand-label">PLAYER (Score: <span id="player-score">0</span>)</div>
+            <div id="player-cards" class="card-container"></div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <h3>Simulation</h3>
+        <div class="stat-line">Capital: $<span id="current-money" class="stat-value">0</span></div>
+        <div class="stat-line">Progress: <span id="game-progress" class="stat-value">0 / 0</span></div>
+        <div class="stat-line">Action: <span id="current-action" class="stat-value">WAITING</span></div>
+
+        <div class="controls">
+            <div class="stat-line">Speed: <span id="speed-value" class="stat-value">100%</span></div>
+            <input type="range" id="speed-range" min="10" max="500" value="410">
+            <button class="btn-skip" onclick="skipSimulation()">SKIP TO RESULT</button>
+        </div>
+    </div>
+
+    <script th:src="@{/js/simulation.js}"></script>
+</body>
+
+</html>

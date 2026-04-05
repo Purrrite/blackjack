@@ -39,8 +39,8 @@
             </div>
             <div class="stat-item">
                 <div class="label">ROI (Return on Investment)</div>
-                <div class="value" th:class="${result.roi >= 100 ? 'positive' : 'negative'}"
-                     th:text="${#numbers.formatDecimal(result.roi, 1, 2) + '%'}">100.00%</div>
+                <div class="value" th:class="${result.roi >= 0 ? 'positive' : 'negative'}"
+                     th:text="${#numbers.formatDecimal(result.roi, 1, 2) + '%'}">0.00%</div>
             </div>
         </div>
 
@@ -58,6 +58,8 @@
                 </tr>
             </tbody>
         </table>
+        <br>
+        <a href="/" style="color: #3498db; text-decoration: none;">← Run New Simulation</a>
     </div>
 </body>
 </html>
