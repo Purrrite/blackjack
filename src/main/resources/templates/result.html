@@ -1,65 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Blackjack Simulation Results</title>
+    <title th:text="${msg.result.title}">Blackjack Simulation Results</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; line-height: 1.6; }
-        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
-        .stat-item { background: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #3498db; }
-        .label { font-weight: bold; color: #7f8c8d; }
-        .value { font-size: 1.2em; color: #2c3e50; }
-        .positive { color: #27ae60; font-weight: bold; }
-        .negative { color: #e74c3c; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border-bottom: 1px solid #eee; padding: 12px; text-align: left; }
-        th { background-color: #f8f9fa; color: #7f8c8d; }
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            line-height: 1.6;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+
+        .value {
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #eee;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #7f8c8d;
+        }
     </style>
 </head>
+
 <body>
     <div class="card">
-        <h1>Blackjack Simulation Results</h1>
-        <p>Simulation Count: <strong th:text="${result.totalGames}">100,000</strong> games</p>
+        <h1 th:text="${msg.result.header}">Blackjack Simulation Results</h1>
+        <p><span th:text="${msg.result.sim_count_label}">Simulation Count:</span> <strong
+                th:text="${result.totalGames}">100,000</strong> <span th:text="${msg.result.games_unit}">games</span>
+        </p>
 
         <div class="stat-grid">
             <div class="stat-item">
-                <div class="label">Initial Capital</div>
+                <div class="label" th:text="${msg.result.label_initial_capital}">Initial Capital</div>
                 <div class="value" th:text="${result.initialMoney}">1,000,000</div>
             </div>
             <div class="stat-item">
-                <div class="label">Final Capital</div>
+                <div class="label" th:text="${msg.result.label_final_capital}">Final Capital</div>
                 <div class="value" th:text="${result.finalMoney}">1,000,000</div>
             </div>
             <div class="stat-item">
-                <div class="label">Profit/Loss</div>
+                <div class="label" th:text="${msg.result.label_profit_loss}">Profit/Loss</div>
                 <div class="value" th:class="${result.finalMoney >= result.initialMoney ? 'positive' : 'negative'}"
-                     th:text="${result.finalMoney - result.initialMoney}">0</div>
+                    th:text="${result.finalMoney - result.initialMoney}">0</div>
             </div>
             <div class="stat-item">
-                <div class="label">ROI (Return on Investment)</div>
+                <div class="label" th:text="${msg.result.label_roi}">ROI (Return on Investment)</div>
                 <div class="value" th:class="${result.roi >= 0 ? 'positive' : 'negative'}"
-                     th:text="${#numbers.formatDecimal(result.roi, 1, 2) + '%'}">0.00%</div>
+                    th:text="${#numbers.formatDecimal(result.roi, 1, 2) + '%'}">0.00%</div>
             </div>
         </div>
 
         <table>
             <thead>
                 <tr>
-                    <th>Game Result</th>
-                    <th>Count</th>
+                    <th th:text="${msg.result.table_header_result}">Game Result</th>
+                    <th th:text="${msg.result.table_header_count}">Count</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="stat : ${result.stats}">
-                    <td th:text="${stat.key}">PLAYER_WIN</td>
+                    <td th:text="${msg.enums[stat.key.name()]} ?: ${stat.key}">PLAYER_WIN</td>
                     <td th:text="${stat.value}">0</td>
                 </tr>
             </tbody>
         </table>
         <br>
-        <a href="/" style="color: #3498db; text-decoration: none;">← Run New Simulation</a>
+        <a href="/" style="color: #3498db; text-decoration: none;" th:text="${msg.result.btn_back}">← Run New
+            Simulation</a>
     </div>
 </body>
+
 </html>

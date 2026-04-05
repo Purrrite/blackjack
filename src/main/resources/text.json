@@ -1,0 +1,49 @@
+{
+  "index": {
+    "title": "Blackjack Simulator - Setup",
+    "header": "Blackjack Simulation",
+    "label_count": "Simulation Count :",
+    "label_initial_money": "Initial Capital :",
+    "label_bet_amount": "Bet Amount :",
+    "btn_quick": "Quick Stats",
+    "btn_visual": "Visual Tick Mode"
+  },
+  "result": {
+    "title": "Blackjack Simulation Results",
+    "header": "Blackjack Simulation Results",
+    "sim_count_label": "Simulation Count:",
+    "games_unit": "games",
+    "label_initial_capital": "Initial Capital",
+    "label_final_capital": "Final Capital",
+    "label_profit_loss": "Profit/Loss",
+    "label_roi": "ROI (Return on Investment)",
+    "table_header_result": "Game Result",
+    "table_header_count": "Count",
+    "btn_back": "← Run New Simulation"
+  },
+  "visual": {
+    "title": "Blackjack Simulation - Tick Mode",
+    "label_dealer": "DEALER",
+    "label_player": "PLAYER",
+    "label_score": "Score:",
+    "header_simulation": "Simulation",
+    "label_capital": "Capital: $",
+    "label_progress": "Progress:",
+    "label_action": "Action:",
+    "status_waiting": "WAITING",
+    "stat_p_wins": "Player Wins:",
+    "stat_p_bj": "Player BJ:",
+    "stat_d_wins": "Dealer Wins:",
+    "stat_d_bj": "Dealer BJ:",
+    "stat_ties": "Ties:",
+    "label_speed": "Speed:",
+    "btn_skip": "SKIP TO RESULT"
+  },
+  "enums": {
+    "PLAYER_WIN": "Player Win",
+    "PLAYER_BLACKJACK": "Player Blackjack",
+    "DEALER_WIN": "Dealer Win",
+    "DEALER_BLACKJACK": "Dealer Blackjack",
+    "PUSH": "Tie"
+  }
+}

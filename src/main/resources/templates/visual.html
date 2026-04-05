@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blackjack Simulation - Tick Mode</title>
+    <title th:text="${msg.visual.title}">Blackjack Simulation - Tick Mode</title>
     <link rel="stylesheet" th:href="@{/css/blackjack.css}">
     <style>
         .dashboard {
@@ -56,7 +56,7 @@
         }
 
         .btn-skip:hover {
-            background: #c0392b;
+            background: #9a9a9a;
         }
 
         input[type=range] {
@@ -75,35 +75,44 @@
 <body>
     <div class="visual-table table-area">
         <div class="hand-area">
-            <div class="hand-label">DEALER (Score: <span id="dealer-score">0</span>)</div>
+            <div class="hand-label"><span th:text="${msg.visual.label_dealer}">DEALER</span> (<span
+                    th:text="${msg.visual.label_score}">Score:</span> <span id="dealer-score">0</span>)</div>
             <div id="dealer-cards" class="card-container"></div>
         </div>
 
         <div style="height: 100px;"></div>
 
         <div class="hand-area">
-            <div class="hand-label">PLAYER (Score: <span id="player-score">0</span>)</div>
+            <div class="hand-label"><span th:text="${msg.visual.label_player}">PLAYER</span> (<span
+                    th:text="${msg.visual.label_score}">Score:</span> <span id="player-score">0</span>)</div>
             <div id="player-cards" class="card-container"></div>
         </div>
     </div>
 
     <div class="dashboard">
-        <h3>Simulation</h3>
-        <div class="stat-line">Capital: $<span id="current-money" class="stat-value">0</span></div>
-        <div class="stat-line">Progress: <span id="game-progress" class="stat-value">0 / 0</span></div>
-        <div class="stat-line">Action: <span id="current-action" class="stat-value">WAITING</span></div>
+        <h3 th:text="${msg.visual.header_simulation}">Simulation</h3>
+        <div class="stat-line"><span th:text="${msg.visual.label_capital}">Capital: $</span><span id="current-money"
+                class="stat-value">0</span></div>
+        <div class="stat-line"><span th:text="${msg.visual.label_progress}">Progress:</span> <span id="game-progress"
+                class="stat-value">0 / 0</span></div>
+        <div class="stat-line"><span th:text="${msg.visual.label_action}">Action:</span> <span id="current-action"
+                class="stat-value" th:text="${msg.visual.status_waiting}">WAITING</span></div>
 
         <div class="stat-line" style="margin-top: 10px; border-top: 1px dashed #27ae60; padding-top: 10px;">
-            Player Wins: <span id="p-wins" class="stat-value">0</span><br>
-            Player BJ: <span id="p-bj" class="stat-value">0</span><br>
-            Dealer Wins: <span id="d-wins" class="stat-value">0</span><br>
-            Dealer BJ: <span id="d-bj" class="stat-value">0</span><br>
-            Ties: <span id="ties" class="stat-value">0</span>
+            <span th:text="${msg.visual.stat_p_wins}">Player Wins:</span> <span id="p-wins"
+                class="stat-value">0</span><br>
+            <span th:text="${msg.visual.stat_p_bj}">Player BJ:</span> <span id="p-bj" class="stat-value">0</span><br>
+            <span th:text="${msg.visual.stat_d_wins}">Dealer Wins:</span> <span id="d-wins"
+                class="stat-value">0</span><br>
+            <span th:text="${msg.visual.stat_d_bj}">Dealer BJ:</span> <span id="d-bj" class="stat-value">0</span><br>
+            <span th:text="${msg.visual.stat_ties}">Ties:</span> <span id="ties" class="stat-value">0</span>
         </div>
 
-        <div class="controls">            <div class="stat-line">Speed: <span id="speed-value" class="stat-value">100%</span></div>
+        <div class="controls">
+            <div class="stat-line"><span th:text="${msg.visual.label_speed}">Speed:</span> <span id="speed-value"
+                    class="stat-value">100%</span></div>
             <input type="range" id="speed-range" min="10" max="500" value="410">
-            <button class="btn-skip" onclick="skipSimulation()">SKIP TO RESULT</button>
+            <button class="btn-skip" onclick="skipSimulation()" th:text="${msg.visual.btn_skip}">SKIP TO RESULT</button>
         </div>
     </div>
 

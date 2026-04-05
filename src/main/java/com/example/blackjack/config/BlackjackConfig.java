@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "blackjack.simulation")
 public class BlackjackConfig {
-    private int count = 100_000;
+    private int count = 100;
     private long initialMoney = 1_000_000;
     private int betAmount = 100;
     private int deckCount = 6;
