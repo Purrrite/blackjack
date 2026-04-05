@@ -93,14 +93,21 @@
         <div class="stat-line">Progress: <span id="game-progress" class="stat-value">0 / 0</span></div>
         <div class="stat-line">Action: <span id="current-action" class="stat-value">WAITING</span></div>
 
-        <div class="controls">
-            <div class="stat-line">Speed: <span id="speed-value" class="stat-value">100%</span></div>
+        <div class="stat-line" style="margin-top: 10px; border-top: 1px dashed #27ae60; padding-top: 10px;">
+            Player Wins: <span id="p-wins" class="stat-value">0</span><br>
+            Player BJ: <span id="p-bj" class="stat-value">0</span><br>
+            Dealer Wins: <span id="d-wins" class="stat-value">0</span><br>
+            Dealer BJ: <span id="d-bj" class="stat-value">0</span><br>
+            Ties: <span id="ties" class="stat-value">0</span>
+        </div>
+
+        <div class="controls">            <div class="stat-line">Speed: <span id="speed-value" class="stat-value">100%</span></div>
             <input type="range" id="speed-range" min="10" max="500" value="410">
             <button class="btn-skip" onclick="skipSimulation()">SKIP TO RESULT</button>
         </div>
     </div>
 
-    <script th:src="@{/js/simulation.js}"></script>
+    <script type="module" th:src="@{/js/app.js}"></script>
 </body>
 
 </html>
