@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 데이터 로드 및 엔진 준비
     await engine.loadData(params);
-    
+
     engine.onComplete = () => {
         const results = engine.getFinalResults();
         const queryParams = new URLSearchParams({
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             dBJ: results.stats.dBJ,
             ties: results.stats.ties
         }).toString();
-        
+
         window.location.href = `/simulate?${queryParams}`;
     };
 
